@@ -62,4 +62,28 @@ public class UserDTO {
     public void setLastUpdated(DateTimeDTO lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UserDTO)) return false;
+
+        UserDTO userDTO = (UserDTO) o;
+
+        if (id != null ? !id.equals(userDTO.id) : userDTO.id != null) return false;
+        if (firstName != null ? !firstName.equals(userDTO.firstName) : userDTO.firstName != null) return false;
+        if (lastName != null ? !lastName.equals(userDTO.lastName) : userDTO.lastName != null) return false;
+        if (created != null ? !created.equals(userDTO.created) : userDTO.created != null) return false;
+        return lastUpdated != null ? lastUpdated.equals(userDTO.lastUpdated) : userDTO.lastUpdated == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (created != null ? created.hashCode() : 0);
+        result = 31 * result + (lastUpdated != null ? lastUpdated.hashCode() : 0);
+        return result;
+    }
 }

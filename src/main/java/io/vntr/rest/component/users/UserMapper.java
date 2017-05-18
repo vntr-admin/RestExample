@@ -18,6 +18,14 @@ public class UserMapper {
     @Autowired
     private DateTimeMapper dateTimeMapper;
 
+    public UserMapper() {
+
+    }
+
+    UserMapper(DateTimeMapper dateTimeMapper) {
+        this.dateTimeMapper = dateTimeMapper;
+    }
+
     public UserDTO fromEntity(User user) {
         if(user == null) {
             return null;

@@ -21,11 +21,11 @@ public class DateTimeMapper {
     private static final DateTimeFormatter dateFormatter = DateTimeFormat.forPattern("MM/dd/yyyy");
     private static final DateTimeFormatter timeFormatter = DateTimeFormat.forPattern("hh:mm a");
 
-    public DateTimeDTO fromEntity(Date date) {
+    public DateTimeDTO fromEntity(Date date, TimeZone timeZone) {
         if(date == null) {
             return null;
         }
-        DateTimeZone dateTimeZone = DateTimeZone.forTimeZone(CHICAGO);
+        DateTimeZone dateTimeZone = DateTimeZone.forTimeZone(timeZone);
         DateTime dateTime = new DateTime(date);
         dateTime = dateTime.withZone(dateTimeZone);
 
@@ -35,5 +35,9 @@ public class DateTimeMapper {
 
         DateTimeDTO dateTimeDTO = new DateTimeDTO(dateStr, timeStr, timestampStr);
         return dateTimeDTO;
+    }
+
+    public DateTimeDTO fromEntity(Date date) {
+        return fromEntity(date, CHICAGO);
     }
 }

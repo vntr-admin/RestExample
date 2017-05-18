@@ -24,6 +24,12 @@ public class UserController {
     @Autowired
     private UserMapper userMapper;
 
+    public UserController() {
+    }
+
+    UserController(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
 
     //CRUD Operations
 

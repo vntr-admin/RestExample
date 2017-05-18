@@ -23,7 +23,6 @@ sourceSets {
         java {
             srcDirs = ['src/main/java']
         }
-
     }
     test {
         java {
@@ -39,6 +38,12 @@ springBoot{
 configurations {
     compile.exclude group: "org.slf4j", module: 'slf4j-jcl'
     compile.exclude group: "ch.qos.logback", module: 'logback-classic'
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+    }
 }
 
 dependencies {
