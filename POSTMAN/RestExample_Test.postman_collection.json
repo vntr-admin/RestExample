@@ -1,0 +1,443 @@
+{
+	"variables": [],
+	"info": {
+		"name": "RestExample Test",
+		"_postman_id": "06908578-b94e-755f-a3a7-86125706f827",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Ted Bexter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"",
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Valid Data\"] = tv4.validate(data, JSON.parse(environment[\"userSchema\"]));",
+							"",
+							"tests[\"Correct First Name\"] = data.firstName === \"Ted\";",
+							"tests[\"Correct Last Name\"]  = data.lastName  === \"Bexter\";",
+							"postman.setEnvironmentVariable(\"TedId\", data.id);"
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"postman.setEnvironmentVariable(\"userSchema\", JSON.stringify(",
+							"{",
+							"  \"title\": \"userSchema\",",
+							"  \"type\": \"object\",",
+							"  \"properties\": {",
+							"    \"id\": {\"type\": \"number\"},",
+							"    \"firstName\": {\"type\": \"string\"},",
+							"    \"lastName\": {\"type\": \"string\"},",
+							"    \"created\": {",
+							"      \"type\": \"object\",",
+							"      \"properties\": {",
+							"        \"date\": {\"type\": \"string\"},",
+							"        \"time\": {\"type\": \"string\"},",
+							"        \"timestamp\": {\"type\": \"string\"}",
+							"      },",
+							"      \"required\": [\"date\", \"time\", \"timestamp\"]",
+							"    },",
+							"    \"lastUpdated\": {",
+							"      \"type\": \"object\",",
+							"      \"properties\": {",
+							"        \"date\": {\"type\": \"string\"},",
+							"        \"time\": {\"type\": \"string\"},",
+							"        \"timestamp\": {\"type\": \"string\"}",
+							"      },",
+							"      \"required\": [\"date\", \"time\", \"timestamp\"]",
+							"    }",
+							"  },",
+							"  \"required\": [\"id\", \"firstName\", \"lastName\", \"created\", \"lastUpdated\"]",
+							"}));",
+							"",
+							"",
+							"postman.setEnvironmentVariable(\"userListSchema\", JSON.stringify(",
+							"{",
+							"  \"title\": \"userListSchema\",",
+							"  \"type\": \"array\",",
+							"  \"items\": {",
+							"    \"type\": \"object\",",
+							"    \"properties\": {",
+							"      \"id\": {\"type\": \"number\"},",
+							"      \"firstName\": {\"type\": \"string\"},",
+							"      \"lastName\": {\"type\": \"string\"},",
+							"      \"created\": {",
+							"        \"type\": \"object\",",
+							"        \"properties\": {",
+							"          \"date\": {\"type\": \"string\"},",
+							"          \"time\": {\"type\": \"string\"},",
+							"          \"timestamp\": {\"type\": \"string\"}",
+							"        },",
+							"        \"required\": [\"date\", \"time\", \"timestamp\"]",
+							"      },",
+							"      \"lastUpdated\": {",
+							"        \"type\": \"object\",",
+							"        \"properties\": {",
+							"          \"date\": {\"type\": \"string\"},",
+							"          \"time\": {\"type\": \"string\"},",
+							"          \"timestamp\": {\"type\": \"string\"}",
+							"        },",
+							"        \"required\": [\"date\", \"time\", \"timestamp\"]",
+							"      }",
+							"    },",
+							"    \"required\": [\"id\", \"firstName\", \"lastName\", \"created\", \"lastUpdated\"]",
+							"  }",
+							"}));"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{base_url_example}}/users",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"Ted\",\n\t\"lastName\": \"Bexter\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Jed Bexter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"",
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Valid Data\"] = tv4.validate(data, JSON.parse(environment[\"userSchema\"]));",
+							"",
+							"tests[\"Correct First Name\"] = data.firstName === \"Jed\";",
+							"tests[\"Correct Last Name\"]  = data.lastName  === \"Bexter\";",
+							"postman.setEnvironmentVariable(\"JedId\", \"\" + data.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{base_url_example}}/users",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"Jed\",\n\t\"lastName\": \"Bexter\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Baby Sham",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"",
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Valid Data\"] = tv4.validate(data, JSON.parse(environment[\"userSchema\"]));",
+							"",
+							"tests[\"Correct First Name\"] = data.firstName === \"Baby\";",
+							"tests[\"Correct Last Name\"]  = data.lastName  === \"Sham\";",
+							"postman.setEnvironmentVariable(\"BabyId\", \"\" + data.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{base_url_example}}/users",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"Baby\",\n\t\"lastName\": \"Sham\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Ted Bexter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Valid Data\"] = tv4.validate(data, JSON.parse(environment[\"userSchema\"]));",
+							"",
+							"tests[\"Correct First Name\"] = data.firstName === \"Ted\";",
+							"tests[\"Correct Last Name\"]  = data.lastName  === \"Bexter\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{base_url_example}}/users/{{TedId}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"lastName\": \"Bextering\",\n\t\"firstName\": \"Ted\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Find Bexters",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var doesListHaveUser = function(firstName, lastName, userList) {",
+							"\tvar i;",
+							"\tfor(i=0; i<userList.length; i += 1) {",
+							"\t\tif(userList[i].firstName === firstName && userList[i].lastName === lastName) {",
+							"\t\t\treturn true;",
+							"\t\t}",
+							"\t}",
+							"\treturn false;",
+							"};",
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Valid Data\"] = tv4.validate(data, JSON.parse(environment[\"userListSchema\"]));",
+							"",
+							"tests[\"Correct Number of Results\"] = data.length === 2;",
+							"",
+							"tests[\"Found Ted\"] = doesListHaveUser(\"Ted\", \"Bexter\", data);",
+							"tests[\"Found Jed\"] = doesListHaveUser(\"Jed\", \"Bexter\", data);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{base_url_example}}/users?lastName=Bexter",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"lastName\": \"Bextering\",\n\t\"firstName\": \"Ted\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Ted Bexter -> Tedward Bexter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"",
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Valid Data\"] = tv4.validate(data, JSON.parse(environment[\"userSchema\"]));",
+							"",
+							"tests[\"Correct First Name\"] = data.firstName === \"Tedward\";",
+							"tests[\"Correct Last Name\"]  = data.lastName  === \"Bexter\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{base_url_example}}/users/{{TedId}}",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"lastName\": \"Bexter\",\n\t\"firstName\": \"Tedward\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Tedward Bexter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Valid Data\"] = tv4.validate(data, JSON.parse(environment[\"userSchema\"]));",
+							"",
+							"tests[\"Correct First Name\"] = data.firstName === \"Tedward\";",
+							"tests[\"Correct Last Name\"]  = data.lastName  === \"Bexter\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{base_url_example}}/users/{{TedId}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"lastName\": \"Bextering\",\n\t\"firstName\": \"Ted\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Jed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{base_url_example}}/users/{{JedId}}",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Find Bexters",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var doesListHaveUser = function(firstName, lastName, userList) {",
+							"\tvar i;",
+							"\tfor(i=0; i<userList.length; i += 1) {",
+							"\t\tif(userList[i].firstName === firstName && userList[i].lastName === lastName) {",
+							"\t\t\treturn true;",
+							"\t\t}",
+							"\t}",
+							"\treturn false;",
+							"};",
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var data = JSON.parse(responseBody);",
+							"",
+							"tests[\"Valid Data\"] = tv4.validate(data, JSON.parse(environment[\"userListSchema\"]));",
+							"",
+							"tests[\"Correct Number of Results\"] = data.length === 1;",
+							"",
+							"tests[\"Found Jed\"] = doesListHaveUser(\"Tedward\", \"Bexter\", data);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{base_url_example}}/users?lastName=Bexter",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"lastName\": \"Bextering\",\n\t\"firstName\": \"Ted\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
