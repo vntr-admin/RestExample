@@ -4,30 +4,30 @@ package io.vntr.rest.component.users;
  * Created by robertlindquist on 5/17/17.
  */
 public class SaveUserDTO {
-    private String firstName;
-    private String lastName;
+    private String password;
+    private String username;
 
     public SaveUserDTO() {
     }
 
-    public SaveUserDTO(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public SaveUserDTO(String password, String username) {
+        this.password = password;
+        this.username = username;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getPassword() {
+        return password;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

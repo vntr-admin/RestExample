@@ -12,8 +12,5 @@ import java.util.List;
  */
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    @Query("SELECT distinct(u) from User u where u.lastName=:lastName")
-    List<User> findByLastName(@Param("lastName") String lastName);
-
-    List<User> findByFirstName(String firstName);
+    List<User> findByUsername(String username);
 }

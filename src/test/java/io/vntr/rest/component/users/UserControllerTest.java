@@ -12,7 +12,6 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.springframework.http.ResponseEntity;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -22,8 +21,6 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Matchers.anyLong;
-import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.when;
 
 /**
@@ -81,7 +78,7 @@ public class UserControllerTest {
             @Override
             public User answer(InvocationOnMock invocation) throws Throwable {
                 Integer id = (Integer) invocation.getArguments()[0];
-                User user = new User("Daryl", "Hannah", id);
+                User user = new User("Hannah", "Daryl", id);
                 user.setCreatedDate(date);
                 user.setLastUpdatedDate(date);
                 return user;
@@ -92,21 +89,21 @@ public class UserControllerTest {
             @Override
             public User answer(InvocationOnMock invocation) throws Throwable {
                 User user = (User) invocation.getArguments()[0];
-                User newUser = new User(user.getFirstName(), user.getLastName(), user.getUserId());
+                User newUser = new User(user.getUsername(), user.getPassword(), user.getUserId());
                 newUser.setCreatedDate(date);
                 newUser.setLastUpdatedDate(date);
                 return newUser;
             }
         });
 
-        when(userService.findUsersByLastName(anyString())).thenAnswer(new Answer<List<User>>() {
+        when(userService.findUsersByUsername(anyString())).thenAnswer(new Answer<List<User>>() {
             @Override
             public List<User> answer(InvocationOnMock invocation) throws Throwable {
                 String lastName = (String) invocation.getArguments()[0];
-                User user1 = new User("Daryl", lastName, 401261859);
+                User user1 = new User(lastName, "Daryl", 401261859);
                 user1.setCreatedDate(date);
                 user1.setLastUpdatedDate(date);
-                User user2 = new User("Cheryl", lastName, 401261860);
+                User user2 = new User("bah", "Cheryl", 401261860);
                 user2.setCreatedDate(date);
                 user2.setLastUpdatedDate(date);
                 return Arrays.asList(user1, user2);

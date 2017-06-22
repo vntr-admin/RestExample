@@ -7,18 +7,18 @@ import io.vntr.rest.component.DateTimeDTO;
  */
 public class UserDTO {
     private Integer id;
-    private String firstName;
-    private String lastName;
+    private String username;
+    private String password;
     private DateTimeDTO created;
     private DateTimeDTO lastUpdated;
 
     public UserDTO() {
     }
 
-    public UserDTO(Integer id, String firstName, String lastName, DateTimeDTO created, DateTimeDTO lastUpdated) {
+    public UserDTO(Integer id, String password, String username, DateTimeDTO created, DateTimeDTO lastUpdated) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.password = password;
+        this.username = username;
         this.created = created;
         this.lastUpdated = lastUpdated;
     }
@@ -31,20 +31,20 @@ public class UserDTO {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getPassword() {
+        return password;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public DateTimeDTO getCreated() {
@@ -71,8 +71,8 @@ public class UserDTO {
         UserDTO userDTO = (UserDTO) o;
 
         if (id != null ? !id.equals(userDTO.id) : userDTO.id != null) return false;
-        if (firstName != null ? !firstName.equals(userDTO.firstName) : userDTO.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(userDTO.lastName) : userDTO.lastName != null) return false;
+        if (password != null ? !password.equals(userDTO.password) : userDTO.password != null) return false;
+        if (username != null ? !username.equals(userDTO.username) : userDTO.username != null) return false;
         if (created != null ? !created.equals(userDTO.created) : userDTO.created != null) return false;
         return lastUpdated != null ? lastUpdated.equals(userDTO.lastUpdated) : userDTO.lastUpdated == null;
     }
@@ -80,8 +80,8 @@ public class UserDTO {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (created != null ? created.hashCode() : 0);
         result = 31 * result + (lastUpdated != null ? lastUpdated.hashCode() : 0);
         return result;

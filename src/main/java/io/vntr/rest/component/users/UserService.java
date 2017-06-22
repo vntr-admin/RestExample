@@ -31,11 +31,7 @@ public class UserService {
         userRepository.delete(id);
     }
 
-    public List<User> findUsersByLastName(String lastName) {
-        return userRepository.findByLastName(lastName);
-    }
-
-    public List<User> findUsersByFirstName(String firstName) {
-        return userRepository.findByFirstName(firstName);
+    public List<User> findUsersByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }

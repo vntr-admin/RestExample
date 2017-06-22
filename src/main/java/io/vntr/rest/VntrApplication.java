@@ -1,6 +1,7 @@
 package io.vntr.rest;
 
 import io.vntr.rest.config.DbProperties;
+import io.vntr.rest.filter.RequestorProcessingFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -59,4 +60,14 @@ public class VntrApplication extends SpringBootServletInitializer {
         registrationBean.setOrder(Integer.MIN_VALUE +1);
         return registrationBean;
     }
+
+    @Bean
+    @Autowired
+    FilterRegistrationBean apiTokenProcessingFilterRegistration(RequestorProcessingFilter requestorProcessingFilter) {
+        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+        registrationBean.setFilter(requestorProcessingFilter);
+        registrationBean.setOrder(Integer.MAX_VALUE - 2);
+        return registrationBean;
+    }
+
 }

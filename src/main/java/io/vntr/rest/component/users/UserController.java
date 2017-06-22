@@ -78,15 +78,8 @@ public class UserController {
     //Additional Operations
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<UserDTO>> getUsers(@RequestParam(value = "lastName",  required = false) String lastName,
-                                                  @RequestParam(value = "firstName", required = false) String firstName) {
-        List<User> users = null;
-        if(firstName != null) {
-            users = userService.findUsersByFirstName(firstName);
-        }
-        else if(lastName != null) {
-            users = userService.findUsersByLastName(lastName);
-        }
+    public ResponseEntity<List<UserDTO>> getUsers(@RequestParam(value = "username") String username) {
+        List<User> users = userService.findUsersByUsername(username);
         List<UserDTO> userDTOs = userMapper.fromEntityList(users);
         return ResponseEntity.ok(userDTOs);
     }

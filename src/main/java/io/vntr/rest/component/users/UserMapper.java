@@ -32,7 +32,7 @@ public class UserMapper {
         }
         DateTimeDTO created = dateTimeMapper.fromEntity(user.getCreatedDate());
         DateTimeDTO lastUpdated = dateTimeMapper.fromEntity(user.getLastUpdatedDate());
-        UserDTO userDTO = new UserDTO(user.getUserId(), user.getFirstName(), user.getLastName(), created, lastUpdated);
+        UserDTO userDTO = new UserDTO(user.getUserId(), user.getPassword(), user.getUsername(), created, lastUpdated);
         return userDTO;
     }
 
@@ -40,7 +40,7 @@ public class UserMapper {
         if(saveUserDTO == null) {
             return null;
         }
-        User user = new User(saveUserDTO.getFirstName(), saveUserDTO.getLastName(), null);
+        User user = new User(saveUserDTO.getPassword(), saveUserDTO.getUsername(), null);
         return user;
     }
 

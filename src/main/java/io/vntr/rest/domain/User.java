@@ -21,11 +21,8 @@ public class User implements Serializable {
     @Column(name = "USER_ID")
     private Integer userId;
 
-    @Column(name = "FIRST_NAME")
-    private String firstName;
-
-    @Column(name = "LAST_NAME")
-    private String lastName;
+    @Column(name = "USERNAME")
+    private String username;
 
     @Column(name = "CREATED_DATE")
     private Date createdDate;
@@ -33,29 +30,24 @@ public class User implements Serializable {
     @Column(name = "LAST_UPDATED_DATE")
     private Date lastUpdatedDate;
 
+    @Column(name = "PASSWORD")
+    private String password;
+
     public User() {
     }
 
-    public User(String firstName, String lastName, Integer userId) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String username, String password, Integer userId) {
+        this.username = username;
+        this.password = password;
         this.userId = userId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Integer getUserId() {
@@ -82,6 +74,18 @@ public class User implements Serializable {
         this.lastUpdatedDate = lastUpdatedDate;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -90,19 +94,20 @@ public class User implements Serializable {
         User user = (User) o;
 
         if (userId != null ? !userId.equals(user.userId) : user.userId != null) return false;
-        if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
+        if (username != null ? !username.equals(user.username) : user.username != null) return false;
         if (createdDate != null ? !createdDate.equals(user.createdDate) : user.createdDate != null) return false;
-        return lastUpdatedDate != null ? lastUpdatedDate.equals(user.lastUpdatedDate) : user.lastUpdatedDate == null;
+        if (lastUpdatedDate != null ? !lastUpdatedDate.equals(user.lastUpdatedDate) : user.lastUpdatedDate != null)
+            return false;
+        return password != null ? password.equals(user.password) : user.password == null;
     }
 
     @Override
     public int hashCode() {
         int result = userId != null ? userId.hashCode() : 0;
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
         result = 31 * result + (lastUpdatedDate != null ? lastUpdatedDate.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
     }
 }

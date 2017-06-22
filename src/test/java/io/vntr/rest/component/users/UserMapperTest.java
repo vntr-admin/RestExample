@@ -23,7 +23,7 @@ public class UserMapperTest {
 
     @Test
     public void testFromEntity() {
-        User user = new User("Daryl", "Hannah", 123);
+        User user = new User("Hannah", "Daryl", 123);
         user.setCreatedDate(TestUtils.getDateChicago(2017, 1, 15, 19, 30));
 
         DateTimeDTO createdDTO = new DateTimeDTO("01/15/2017", "07:30 PM", "2017-01-15T19:30");
